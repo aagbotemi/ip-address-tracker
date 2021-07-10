@@ -15,7 +15,7 @@
         <article>
           <div class="ip-address">
             <h3>IP ADDRESS</h3>
-            <span>192.786.896.9</span>
+            <span>{{ ipAddress.ip }}</span>
           </div>
           <div class="location">
             <h3>LOCATION</h3>
