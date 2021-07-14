@@ -40,12 +40,12 @@
 <script>
 export default {
   data: () => ({
-    search: ''
+    search: '',
+    ipData: []
   }),
-  methods: {
-    getIP() {
-      //
-    }
+  async asyncData({ $axios }) {
+    const post = await $axios.$get(`https://geo.ipify.org/api/v1?apiKey=${this.apiKey}&ipAddress=${this.search}`)
+    return { post }
   }
 }
 </script>
