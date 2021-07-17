@@ -1,12 +1,12 @@
 <template>
   <div v-if="loading">Loading...</div>
   <div v-else>
-    <header class="text-center py-7">
+    <header class="text-center pt-7 pb-52 sm:pb-7">
       <h1 class="text-white text-2xl sm:text-4xl">IP Address Tracker</h1>
       <form class="flex justify-center align-center mt-5 mb-7 sm:mb-10" @submit.prevent="getIP">
         <input
-          class="shadow border rounded-l w-80 text-gray-700 sm:py-3 py-2 px-3 focus:outline-none focus:shadow-outline"
           v-model="search"
+          class="shadow border rounded-l w-80 text-gray-700 sm:py-3 py-2 px-3 focus:outline-none focus:shadow-outline"
           type="text"
           name="search"
           placeholder="Search for any IP address or domain"
@@ -15,44 +15,34 @@
           <img src="/images/icon-arrow.svg">
         </button>
       </form>
-      <section class=" w-full flex justify-center absolute">
-        <article class="sm:flex bg-white shadow-md rounded-md py-5 px-16 sm:p-5 mx-5">
-          <div class="border-b sm:border-b-0 sm:border-r border-grey-900 sm:pr-3 pb-2 sm:pb-0">
-            <h3 class="text-xs font-bold text-gray-500">IP ADDRESS</h3>
-            <span class="font-medium text-lg sm:text-xl">{{ ipAddress.ip }}</span>
-          </div>
-          <div class="border-b sm:border-b-0 sm:border-r border-grey-900 sm:px-3 py-2 sm:py-0">
-            <h3 class="text-xs font-bold text-gray-500">LOCATION</h3>
-            <span class="font-medium text-lg sm:text-xl">
-              {{ ipAddress.location && ipAddress.location.city }},
-              {{ ipAddress.location && ipAddress.location.region }},
-              {{ ipAddress.location && ipAddress.location.country }}
-            </span>
-          </div>
-          <div class="border-b sm:border-b-0 sm:border-r border-grey-900 sm:px-3 py-2 sm:py-0">
-            <h3 class="text-xs font-bold text-gray-500">TIMEZONE</h3>
-            <span class="font-medium text-lg sm:text-xl">GMT {{ ipAddress.location && ipAddress.location.timezone }}</span>
-          </div>
-          <div class=" sm:pl-3 pt-2 sm:pt-0">
-            <h3 class="text-xs font-bold text-gray-500">ISP</h3>
-            <span class="font-medium text-lg sm:text-xl">{{ ipAddress.isp }}</span>
-          </div>
-        </article>
-      </section>
+      <IPTrackerCard :ip-address="ipAddress"/>
     </header>
+    <div id="map-wrap" style="height: 100vh">
+      <client-only>
+        <l-map :zoom='zoom' :center="[latitude, longitude]">
+          <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
+          <l-marker :lat-lng="[latitude, longitude]"></l-marker>
+        </l-map>
+      </client-only>
+    </div>
   </div>
 </template>
 
 <script>
-// import axios from '@nuxtjs/axios'
+import 'leaflet/dist/leaflet.css'
+import IPTrackerCard from "../components/IPTrackerCard";
 
 export default {
+  components: {
+    IPTrackerCard,
+  },
   data: () => ({
     loading: false,
     search: '',
     ipAddress: {},
     latitude: null,
     longitude: null,
+    zoom: 13
   }),
   mounted() {
     this.getIP()
@@ -73,7 +63,7 @@ export default {
       } finally {
         this.loading = false
       }
-    }
+    },
   },
 }
 </script>
