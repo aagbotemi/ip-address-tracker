@@ -15,7 +15,7 @@
         <article>
           <div class="ip-address">
             <h3>IP ADDRESS</h3>
-            <span>{{ ipAddress.ip }}</span>
+            <span>5.5.5.5</span>
           </div>
           <div class="location">
             <h3>LOCATION</h3>
@@ -40,12 +40,12 @@
 <script>
 export default {
   data: () => ({
-    search: '',
-    ipData: []
+    search: ''
   }),
-  async asyncData({ $axios }) {
-    const post = await $axios.$get(`https://geo.ipify.org/api/v1?apiKey=${this.apiKey}&ipAddress=${this.search}`)
-    return { post }
-  }
+  methods: {
+    getIP() {
+      console.log('test')
+    }
+  },
 }
 </script>
