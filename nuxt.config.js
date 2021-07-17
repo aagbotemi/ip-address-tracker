@@ -29,8 +29,10 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
+  /* plugins: [
+    { src: '~plugins/leaflet.js', ssr: false }
+  ], */
+  plugins: ['~plugins/leaflet.client.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -47,6 +49,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    // Simple Usage
+    // 'nuxt-leaflet'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
