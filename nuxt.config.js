@@ -16,8 +16,10 @@ export default {
     ]
   },
 
-  env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+  publicRuntimeConfig: {
+    baseUrl: process.env.BASE_URL
+  },
+  privateRuntimeConfig: {
     apiKey: process.env.BASE_API_KEY
   },
 

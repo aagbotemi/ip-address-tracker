@@ -44,7 +44,7 @@ export default {
   }),
   methods: {
     getIP() {
-      console.log('test')
+      console.log('status')
     }
   },
 }
