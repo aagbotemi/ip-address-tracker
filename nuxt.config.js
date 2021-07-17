@@ -17,10 +17,11 @@ export default {
   },
 
   publicRuntimeConfig: {
-    baseUrl: process.env.BASE_URL
+    baseUrl: process.env.BASE_URL,
+    apiKey: process.env.BASE_API_KEY
   },
   privateRuntimeConfig: {
-    apiKey: process.env.BASE_API_KEY
+    // apiKey: process.env.BASE_API_KEY
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
