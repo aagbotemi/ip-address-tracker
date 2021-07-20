@@ -32,7 +32,7 @@ export default {
   /* plugins: [
     { src: '~plugins/leaflet.js', ssr: false }
   ], */
-  plugins: ['~plugins/leaflet.client.js'],
+  plugins: ['~plugins/leaflet.client.js', '~plugins/particles.client.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
